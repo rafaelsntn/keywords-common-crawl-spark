@@ -5,7 +5,7 @@ This project provides a script that extracts keywords that represents a web page
 ## Running locally
 ### Install the project and packages:
 1. Clone the GitHub repo <br />
-`git clone https://github.com/rafaelsntn/deepspeech-batch-inference-aws`
+`git clone https://github.com/rafaelsntn/keywords-common-crawl-spark`
 2. Create a virtual environment: <br />
 `python -m venv .venv`
 3. Activate the virtual environment: <br />
