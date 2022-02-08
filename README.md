@@ -1,6 +1,6 @@
-# Keywords extraction from Common Crawl using Apache Spark 
+# Kephrases extraction from Common Crawl dataset 
 
-This project provides a script that extracts keywords that represents a web page and aggregates them by counting the occurence of each one.
+This project provides a PySpark code that extracts keyphrases of n words that represents a web page main content, and counts the occurence of each one.
 
 ## Running locally
 ### Install the project and packages:
@@ -28,7 +28,7 @@ A example that runs on webpages with url patterns "blog.com.br" and ".com.br/blo
 ## Running on AWS EMR
 1. First follow steps in the "Running locally" section.
 2. Upload the files emr_spark_config.json and emr_python_packages.sh to the AWS S3 bucket created in the "Running locally" section.
-3. Create a cluster in EMR using AWS CLI. Example: <br />
+3. Create a cluster in EMR using AWS CLI. Example (Replace "\\" with "^" for Windows): <br />
 `
 aws emr create-cluster \
 --name "Spark cluster" \
@@ -42,8 +42,6 @@ aws emr create-cluster \
 --enable-debugging \
 --configurations file://./spark_config.json
 `
-<br />
-Replace "\" with "^" for Windows. <br />
 4. After cluster changes to Running status, create a task in EMR passing the cluster id. Example: <br />
 `
 aws emr add-steps \
