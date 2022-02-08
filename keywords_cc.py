@@ -13,9 +13,9 @@ import re
 from urllib.parse import urlparse
 import os
 
-def get_article_text(html):
+def get_main_content(html):
   """
-  Get the most relevant keyword sequence for each text using keyBERT.
+  Get the main content of the web page.
 
   :param html: pure html content.
   """
@@ -82,12 +82,12 @@ def get_keyword_seq(hostname, html, ngram_length, bert_transformer, stopwords=[]
   Get the most relevant keyword sequence for each text using keyBERT.
 
   :param hostname: the hostname of the content.
-  :param html: pure html content.
+  :param html: raw html content.
   :param ngram_length: N of the n-gram.
-  :param bert_transformer: The right bert transformer for the language.
+  :param bert_transformer: the BERT transformer to be used.
   :param stopwords: List of stopwords.
   """
-  article_text = get_article_text(html)
+  article_text = get_main_content(html)
   if len(article_text) < 1000: return ('', '') # don't run the inferece on texts with less than 1000 chars
 
   sentence_model = SentenceTransformer(bert_transformer, cache_folder='.')
