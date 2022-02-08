@@ -1,4 +1,4 @@
-# Kephrases extraction from Common Crawl dataset 
+# Keyphrases extraction from Common Crawl dataset 
 
 This project provides a PySpark code that extracts keyphrases of n words that represents a web page main content, and counts the occurence of each one.
 
