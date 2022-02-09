@@ -1,6 +1,6 @@
-# Keyphrases extraction from Common Crawl dataset 
+# Keywords extraction from Common Crawl dataset 
 
-This project provides a PySpark code that extracts keyphrases of n words that represents a web page main content, and counts the occurence of each one.
+This project provides a PySpark code that extracts keywords and keyphrases of n words that represents a web page main content, and counts the occurence of each one.
 
 ## Running locally
 ### Install the project and packages:
@@ -29,7 +29,7 @@ A example that runs on webpages with url patterns "blog.com.br" and ".com.br/blo
 1. First follow steps in the "Running locally" section.
 2. Upload the files emr_spark_config.json and emr_python_packages.sh to the AWS S3 bucket created in the "Running locally" section.
 3. Create a cluster in EMR using AWS CLI. Example (Replace "\\" with "^" for Windows): <br />
-`
+```
 aws emr create-cluster \
 --name "Spark cluster" \
 --release-label emr-5.34.0 \
@@ -41,13 +41,13 @@ aws emr create-cluster \
 --log-uri s3://YOUR-BUCKET-NAME/logs/ \
 --enable-debugging \
 --configurations file://./spark_config.json
-`
+```
 4. After cluster changes to Running status, create a task in EMR passing the cluster id. Example: <br />
-`
+```
 aws emr add-steps \
 --cluster-id <your cluster id> \
 --steps Type=Spark,Name="Keywords CC",ActionOnFailure=CONTINUE,Args=[s3://YOUR-BUCKET-NAME/keywords_cc.py,--warc_list_s3_uri,s3://YOUR-BUCKET-NAME/warc_files,--output_s3_uri,s3://YOUR-BUCKET-NAME/output_2_gram,--ngram_length,2,--url_regex_pattern,\.com\.br/blog;://blog\..*\.com\.br;\.blog\..*\.com\.br",--nltk_stop_word_lang,portuguese]
-`
+```
 
 ## Cleaning up
 After running the tasks, you can terminate the cluster in the AWS console or via CLI, using the following command: <br />
